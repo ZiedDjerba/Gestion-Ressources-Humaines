@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    >
+</head>
+<body>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+          <!-- Tabs Titles -->
+          <h2 class="active"> Se Connecter </h2>
+          <a href="InterfaceAdmin/Inscription.html"><h2 class="inactive underlineHover">S'inscrire </h2></a>
+      
+      
+          <!-- Login Form -->
+          <form>
+            <input type="text" id="inputLogin" class="fadeIn second" name="login" placeholder="Email">
+            <input type="text" id="inputPassword" class="fadeIn third" name="login" placeholder="Mot de passe">
+         
+          </form>
+           <!--Button Log in-->
+           <input type="submit" class="fadeIn fourth" value="Log In" onclick="Login()"> 
+          <!-- Remind Passowrd -->
+          <div id="formFooter">
+            <a class="underlineHover" href="forgetpasswd.html">Mot de passe oublié?</a>
+          </div>
+      
+          <div id="snackbarFailed">Création échouée</div>
+
+        </div>
+      </div>
+      <script src="javascript.js"></script
+</body>
+</html>
