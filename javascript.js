@@ -113,7 +113,7 @@ function Save() {
       localStorage.setItem("tableauAdmin", JSON.stringify(retrievedTab));
       myFunctionSnackbarReussi();
       var key = retrievedTab[i].societe;
-      localStorage.setItem("key", key)
+     
     }
     if (a == 0) {
       console.log('user mawjoud');
