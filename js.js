@@ -1,5 +1,4 @@
-/**fonction d'ajout utilisateur */
-
+/**fonction d'ajout utilisateur */  
 function add_user(){
  
     /**inputs de formulaire ajout employe */
@@ -65,6 +64,7 @@ function add_user(){
   }
   
   
+   
   /***afficher la liste des employés */
   /**fonction affichage de profil employe */
 
