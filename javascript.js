@@ -166,9 +166,10 @@ function sendemail() {
 
 
 /******Se Connecter() As User and Admin*******/
-var resultatAdmin ;
-var resultatUser ;
+
 function Login() {
+	var resultatAdmin ;
+var resultatUser ;
   var login = document.getElementById("inputLogin").value;
   var pwd = document.getElementById("inputPassword").value;
 
@@ -233,13 +234,11 @@ function Login() {
             }
 
           }
-
-
         }
       }
-      console.log('resultatAdmin ', resultatAdmin);
-      console.log('resultatUser ', resultatUser);
-
+    /*  console.log( resultatAdmin);
+      console.log( resultatUser);
+*/
     }
   }
   
@@ -247,14 +246,14 @@ function Login() {
 
 
   if (resultatAdmin == 1) {
-    location.href = 'InterfaceAdmin/Admin.html';
+    location.href = "InterfaceAdmin/Admin.html";
     //Store
     localStorage.setItem("Key", key);
   }
   if (resultatUser == 1) {
-    location.href = 'g_consulter_profil.html.html';
+    location.href = "g_consulter_profil.html";
     localStorage.setItem("Key", key);
-    localStorage.setItem("Key", key);
+    
   }
   if ((resultatAdmin == 0) && (resultatUser == 0)) {
     // myFunctionSnackbarEchoué()
