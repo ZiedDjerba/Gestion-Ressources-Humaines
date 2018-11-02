@@ -175,7 +175,9 @@ var resultatUser ;
 
   //Retrieve from local storage table
   var retrievedTab = JSON.parse(localStorage.getItem("tableauAdmin")) || [];
-  var retrievedTabUser = JSON.parse(localStorage.getItem("tableauUser")) || [];
+  var retrievedTabUser = JSON.parse(localStorage.getItem("tabemploye")) || [];
+
+ 
 
 
 
@@ -225,20 +227,24 @@ var resultatUser ;
                 resultatAdmin = 0 ;
                 resultatUser = 1 ;
                 key = retrievedTabUser[j].societe;
+                
+               // console.log('resultatUser',resultatUser);
               }
               if (((document.getElementById("inputLogin").value !== retrievedTabUser[j].email) && (document.getElementById("inputPassword").value !== retrievedTabUser[j].pwd))) 
               {
                 resultatAdmin = 0;
                 resultatUser = 0 ;
               }
+             
             }
-
+            
           }
+
         }
       }
-    /*  console.log( resultatAdmin);
-      console.log( resultatUser);
-*/
+     console.log('resultatAdmin', resultatAdmin);
+      console.log('resultatUser', resultatUser);
+
     }
   }
   
@@ -248,11 +254,11 @@ var resultatUser ;
   if (resultatAdmin == 1) {
     location.href = "InterfaceAdmin/Admin.html";
     //Store
-    localStorage.setItem("Key", key);
+    localStorage.setItem("cle", key);
   }
   if (resultatUser == 1) {
-    location.href = "g_consulter_profil.html";
-    localStorage.setItem("Key", key);
+    location.href = "InterfaceEmploye/g_consulter_profil.html";
+    localStorage.setItem("cle", key);
     
   }
   if ((resultatAdmin == 0) && (resultatUser == 0)) {
@@ -268,3 +274,4 @@ var resultatUser ;
 function Afficher(){
   
 }
+
