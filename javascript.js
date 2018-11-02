@@ -248,11 +248,11 @@ var resultatUser ;
   if (resultatAdmin == 1) {
     location.href = "InterfaceAdmin/Admin.html";
     //Store
-    localStorage.setItem("Key", key);
+    localStorage.setItem("cle", key);
   }
   if (resultatUser == 1) {
     location.href = "g_consulter_profil.html";
-    localStorage.setItem("Key", key);
+    localStorage.setItem("cle", key);
     
   }
   if ((resultatAdmin == 0) && (resultatUser == 0)) {

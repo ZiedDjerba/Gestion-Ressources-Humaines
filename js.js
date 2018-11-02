@@ -4,7 +4,7 @@ function add_user(){
  
     /**inputs de formulaire ajout employe */
     /**variable pour extraire l'objet key (admin) de localstorage */
-   var v_key=localStorage.getItem("key");
+   var v_key=localStorage.getItem("cle");
   alert(v_key);
     var id_user = document.getElementById("inputid").value;
     var image=document.getElementById("img").value;
@@ -38,27 +38,29 @@ function add_user(){
     };
     /**tableau des employes */
     var userTab = [];
-  var test=0;
-    var i;
-    if(localStorage.length>0)//test sur les objets de localstorage 
-   {
-     for(i=0;i<localStorage.length;i++)
-     {
-       if(localStorage.key(i)=="tabemploye")
-       {
-     userTab=JSON.parse(localStorage.getItem("tabemploye"));
-    userTab.push(employe); 
-    localStorage.setItem("tabemploye",JSON.stringify(userTab));
-    test==1;
-   }}}
-   else(test==0)
-   {
-   
-    userTab.push(employe); 
-    localStorage.setItem("tabemploye",JSON.stringify(userTab));
   
-  }
-  alert("c bon");
+    var i;
+   
+      if("tabemploye" in localStorage)
+   {   
+   
+     
+    
+    userTab=JSON.parse(localStorage.getItem("tabemploye"));
+    userTab.push(employe); 
+    localStorage.setItem("tabemploye",JSON.stringify(userTab));
+    
+    
+   }
+   
+  
+   else
+   {
+    userTab.push(employe); 
+    localStorage.setItem("tabemploye",JSON.stringify(userTab));
+   
+   }
+  
 
   }
   
@@ -76,7 +78,7 @@ function user_profil()
   /**valeur de recupertion de de l'email de l'utilisateur connecté */
  
   var retrivedTabmploye=JSON.parse(localStorage.getItem("tabemploye"));
-  var x = localStorage.getItem("key");
+  var x = localStorage.getItem("cle");
 
   
   for(i=0;i<retrivedTabmploye.length;i++)
@@ -89,4 +91,12 @@ if(x ==retrivedTabmploye[i].societe)
    document.getElementById("paire").innerHTML = paire;
 }
 }
+}
+/**se deconnecter */
+function deconnecter()
+{
+localStorage.removeItem("cle");
+
+location.href="../login.html";
+
 }
