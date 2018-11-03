@@ -242,9 +242,8 @@ var resultatUser ;
 
         }
       }
-     console.log('resultatAdmin', resultatAdmin);
-      console.log('resultatUser', resultatUser);
 
+    
     }
   }
   
@@ -254,12 +253,14 @@ var resultatUser ;
   if (resultatAdmin == 1) {
     location.href = "InterfaceAdmin/Admin.html";
     //Store
+    
     localStorage.setItem("cle", key);
+    localStorage.setItem("objlogin", document.getElementById("inputLogin").value);
   }
   if (resultatUser == 1) {
     location.href = "InterfaceEmploye/g_consulter_profil.html";
     localStorage.setItem("cle", key);
-    
+    localStorage.setItem("objlogin", document.getElementById("inputLogin").value);
   }
   if ((resultatAdmin == 0) && (resultatUser == 0)) {
     // myFunctionSnackbarEchoué()

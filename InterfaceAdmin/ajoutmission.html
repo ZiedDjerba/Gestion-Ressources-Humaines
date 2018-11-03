@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 
@@ -26,11 +28,11 @@
             <!--Row2CL-->
             <div class="Row2CL">
                 <ul>
-                        <li class="Li1Row2CL" onclick="Afficher()"><a href="#" class="TxtLi1Row2CL"> <i class="fas fa-pen-alt"></i> Afficher Users</a> </li>
-                        <li class="Li1Row2CL" ><a href="ajout_user.html" class="TxtLi1Row2CL"> <i class="fas fa-pen-alt"></i> Ajouter User</a> </li>
-                    <li class="Li1Row2CL"><a href="#" class="TxtLi1Row2CL"> <i class="fas fa-pen-alt"></i> Modifier User</a> </li>
-                    <li class="Li2Row2CL"> <a href="#" class="TxtLi2Row2CL"> <i class="fas fa-trash-alt"></i>  Supprimer User</li></a> 
-                    <li class="Li2Row2CL"> <a href="ajoutmission.html" class="TxtLi2Row2CL"> <i class="fas fa-trash-alt"></i>  Ajouter Mission</li></a> 
+                        <li class="Li1Row2CL" onclick="Afficher()"><a href="#" class="TxtLi1Row2CL"> <i class="fas fa-pen-alt"></i> Afficher Employé</a> </li>
+                        <li class="Li1Row2CL" ><a href="ajout_user.html" class="TxtLi1Row2CL"> <i class="fas fa-pen-alt"></i> Ajouter Employé</a> </li>
+                    <li class="Li1Row2CL"><a href="#" class="TxtLi1Row2CL"> <i class="fas fa-pen-alt"></i> Modifier Employé</a> </li>
+                    <li class="Li2Row2CL"> <a href="#" class="TxtLi2Row2CL"> <i class="fas fa-trash-alt"></i>  Supprimer Employé</li></a> 
+                    <li class="Li1Row2CL" onclick="Afficher()"><a href="#" class="TxtLi1Row2CL"> <i class="fas fa-pen-alt"></i> Ajouter Mission</a> </li>
                 </ul>
             </div>
 
@@ -43,7 +45,7 @@
             <div class="Row1CR">
                 <!--Column1R1CR-->
                 <div class="Column1R1CR">
-                    <h2>Adminstrateur</h2>
+                    <h2>Interface Administrateur</h2>
                 </div>
                 <!--Column2R1CR-->
                 <div class="dropdown">
@@ -61,39 +63,45 @@
         <div class="wrap">
             
     <form>
-            <h2>Veuillez Saisir Un Nouveaux Utilisateur</h2>
+            <h3>Matricule de l'employé</h3>
             
                    
           
             <form id="user_form">
                 
                    
-                    <input id="inputid" type="text" name="Matricule" placeholder="Matricule">
+                    <input id="inputId" type="text" name="Matricule" placeholder="">
                    
                    
-                        <input id="inputnom_user" type="text" name="Nom" placeholder="Nom">
-                        <input id="inputprenom_user" type="text" name="Prenom" placeholder="Prenom">
-                        <input id="inputEmail_user" type="text" name="Email" placeholder="Email">
-                        <input id="inputdatenais" type="date" name="Date De naissance" placeholder="Date De naissance">
-                        <input id="inputCin_user" type="text" name="CIN" placeholder="CIN">
-                        <input id="inputpwd_user" type="text" name="Mot De Passe" placeholder="Mot De Passe">
-                        <input id="inputtel_user" type="text" name="Tel" placeholder="Tel">
-                        <input id="inputadresse_user" type="text" name="Adresse" placeholder="Adresse">
-                        <input id="inpusalaire" type="text" name="Salaire" placeholder="Salaire">
-                        <input id="inputconge" type="text" name="Congé" placeholder="Congé">
-                                                                  
+                    <h3>Mission</h3>
+    <textarea id="inputMission" rows="12" cols="50"></textarea>
+            
+        
+<div class="row">
+                       
+    <h3>Date Debut Mission</h3>
+    <input id="inputDatedmission" class="input" name="name" type="date" name="date" size="30" /><br />
+    <h3>Date Fin Miision</h3>
+    <input id="inputDatefmission" class="input" name="name" type="date" name="date" size="30" /><br />
+                 
+                    
+
+
+
+</div>
+                                      
     
     
             </form>
-            <a onclick="add_user()"> <input id="submit_button" type="submit" value="Ajouter" />
+            <a onclick="ajout_mission()"> <input id="submit_button" type="submit" value="Ajouter" />
             </form>   </div>
           
             
                    
 
 <!--Snackbar-->
-<div id="snackbar"> Création réussite </div>
-<div id="snackbarFailed"> Création échouée </div>
+<div id="snackbar"> La Mission a été bien ajoutée </div>
+<div id="snackbarFailed"> La mission a été échouée </div>
 
 <div id="snackbar"></div>
     <script src="../javascript.js"></script>
@@ -102,3 +110,11 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+

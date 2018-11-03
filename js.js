@@ -1,3 +1,7 @@
+
+
+
+
 /**fonction d'ajout utilisateur */  
 function add_user(){
  
@@ -6,7 +10,7 @@ function add_user(){
    var v_key=localStorage.getItem("cle");
   alert(v_key);
     var id_user = document.getElementById("inputid").value;
-    var image=document.getElementById("img").value;
+   var image=document.getElementById("img").value;
     var nom_user = document.getElementById("inputnom_user").value;
     var Prenom_user = document.getElementById("inputprenom_user").value;
     var Email_user = document.getElementById("inputEmail_user").value;
@@ -21,7 +25,7 @@ function add_user(){
     
     var employe = {
       'id': id_user,
-      'img':image,
+     /* 'img':image,*/
       'lastname': nom_user,
       'firstname': Prenom_user,
       'datenais':date_nais,
@@ -32,40 +36,86 @@ function add_user(){
       'tel': Tel_user,
       'societe': Societe,
   'salaire':salaire,
-  'congé':congé
+  'congé':congé,
+  'Img':image
   
     };
     /**tableau des employes */
     var userTab = [];
-  
-    var i;
-   
+  var test=1;
+    var i,j;
+   var v_email=document.getElementById("inputEmail_user").value;
       if("tabemploye" in localStorage)
    {   
    
      
     
     userTab=JSON.parse(localStorage.getItem("tabemploye"));
-    userTab.push(employe); 
-    localStorage.setItem("tabemploye",JSON.stringify(userTab));
-    
-    
-   }
-   
-  
-   else
-   {
-    userTab.push(employe); 
-    localStorage.setItem("tabemploye",JSON.stringify(userTab));
-   
-   }
-  
+    for(j=0;j<userTab.length;j++)
+    {
+if(userTab[j].email==v_email)
+{
+  myFunctionSnackbarEchoué();
+  test=0;
+  break;
+}
+    }
 
+  if(test==1)
+   { userTab.push(employe); 
+    localStorage.setItem("tabemploye",JSON.stringify(userTab));
+    myFunctionSnackbarReussi();
+   }
   }
+  else{
+    userTab.push(employe);
+    localStorage.setItem("tabemploye",JSON.stringify(userTab));
+    myFunctionSnackbarReussi();
+  }
+}
   
   
+  // Fonction Snackbar Création Réussie
+function myFunctionSnackbarReussi() {
+  var x = document.getElementById("snackbar");
+  x.className = "show";
+  setTimeout(function () { x.className = x.className.replace("show", ""); }, 2000);
+}
+
+//Fonction Snackbar Création échoué
+function myFunctionSnackbarEchoué() {
+  var x = document.getElementById("snackbarFailed");
+  x.className = "show";
+  setTimeout(function () { x.className = x.className.replace("show", ""); }, 2000);
+
+}
+
    
   /***afficher la liste des employés */
+  function affiche_profil()
+  {
+    
+    var i;
+    var profil = "<tr class=\"first\"></tr><tr><b>ID</b><br></tr><tr><b>Prenom</b><br></tr><tr><b>Nom</b><br></tr><tr><b>Date De Naissance</b><br></tr><tr><b> CIN:</b><br></tr><tr><b>Mot De Passe </b><br></tr><tr><b>Tel</b><br></tr><tr><b>Adresse</b><br></tr><tr><b>Salaire</b><br></tr><tr><b>Congé</b><br></tr></tr> \n";
+    document.getElementById("profil").innerHTML = profil;
+    /**valeur de recupertion de de l'email de l'utilisateur connecté */
+ var l=localStorage.getItem("objlogin");
+    var res=JSON.parse(localStorage.getItem("tabemploye"));
+   
+    for(i=0;i<res.length;i++)
+    {
+     
+      if(res[i].email==l)
+    {
+    document.getElementById("img").innerHTML="<img src=C:\finalproject\InterfaceAdmin\images height=42 width=42>";
+     profil = "<td class=\"first\"></tr><tr></tr><tr><td><b>Email/ID:</b></td><td>"+res[i].id+"</td></tr><tr><td><b>Nom:</b></td><td>"+res[i].lastname+"</td></tr><tr><td><b>Prenom:</b></td><td>"+res[i].firstname+"</td></tr><tr><td><b>Date de naissance:</b></td><td>"+res[i].datenais+"</td></tr><tr><td><b>Mot de passe:</b></td><td>"+res[i].pwd+"</td></tr><tr><td><b>CIN:</b></td><td>"+res[i].CIN+"</td></tr><tr><td><b>Adresse:</b></td><td>"+res[i].adresse+"</td></tr><tr><td><b>Tel:</b></td><td>"+res[i].tel+"</td></tr><tr><td><b>Societe:</b></td><td>"+res[i].societe+"</td></tr><tr><td><b>Salaire:</b></td><td>"+res[i].salaire+"</td></tr><tr><td><b>Congé:</b></td><td>"+res[i].congé+"</td></td> \n";
+   
+     document.getElementById("profil").innerHTML = profil;
+  }
+}}
+
+
+
   /**fonction affichage de profil employe */
 
 function user_profil()
@@ -100,3 +150,62 @@ localStorage.removeItem("cle");
 location.href="../login.html";
 
 }
+/**fonction ajouter mission */
+function ajout_mission()
+{
+  var id_user = document.getElementById("inputId").value;
+  var v_mission = document.getElementById("inputMission").value;
+  var debut_miss = document.getElementById("inputDatedmission").value;
+  var fin_miss = document.getElementById("inputDatefmission").value;
+ 
+Mission={
+  'matricule':id_user ,
+  'miss': v_mission,
+  'datedebutmiss':debut_miss,
+  'datefinmiss': fin_miss
+}
+
+ /**tableau des employes */
+ var userTab = [];
+ var test=0;
+   var i,j;
+   /**tester sil existe une table des emplyees dans local storag */
+   if("tabemploye" in localStorage)
+   {   
+
+    userTab=JSON.parse(localStorage.getItem("tabemploye"));
+    for(i=0;i<userTab.length;i++)
+    {
+      /**tester si la matricule user ajouter avec la mission existe dans la table employes */
+if(userTab[i].id==Mission.matricule)
+{
+  
+  test=1;
+  break;
+}
+    }}
+    else{
+      myFunctionSnackbarEchoué();
+    }
+    /**yester si il existe un table mission dans local storage */
+if(("tabmission" in localStorage)&&(test==1))
+  {   
+ 
+   userTab=JSON.parse(localStorage.getItem("tabmission"));
+   
+   userTab.push(Mission); 
+   localStorage.setItem("tabemission",JSON.stringify(Mission));
+   myFunctionSnackbarReussi();
+  }
+ 
+ else{
+   userTab.push(Mission);
+   localStorage.setItem("tabemission",JSON.stringify(Mission));
+   myFunctionSnackbarReussi();
+ }
+}
+
+
+
+
+ 
