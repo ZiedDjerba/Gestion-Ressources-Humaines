@@ -112,8 +112,8 @@ function Save() {
       retrievedTab.push(person);
       localStorage.setItem("tableauAdmin", JSON.stringify(retrievedTab));
       myFunctionSnackbarReussi();
-      var key = retrievedTab[i].societe;     
-      
+      var key = retrievedTab[i].societe;
+
     }
     if (a == 0) {
       console.log('user mawjoud');
@@ -168,8 +168,8 @@ function sendemail() {
 /******Se Connecter() As User and Admin*******/
 
 function Login() {
-	var resultatAdmin ;
-var resultatUser ;
+  var resultatAdmin;
+  var resultatUser;
   var login = document.getElementById("inputLogin").value;
   var pwd = document.getElementById("inputPassword").value;
 
@@ -177,7 +177,7 @@ var resultatUser ;
   var retrievedTab = JSON.parse(localStorage.getItem("tableauAdmin")) || [];
   var retrievedTabUser = JSON.parse(localStorage.getItem("tabemploye")) || [];
 
- 
+
 
 
 
@@ -187,67 +187,59 @@ var resultatUser ;
   }
 
   if (retrievedTab != null) {
-    if ((document.getElementById("inputLogin").value === "") || (document.getElementById("inputPassword").value === "")) 
-    {
+    if ((document.getElementById("inputLogin").value === "") || (document.getElementById("inputPassword").value === "")) {
 
       console.log("input missed");
 
     }
-    if ((document.getElementById("inputLogin").value !== "") && (document.getElementById("inputPassword").value !== "")) 
-    {
+    if ((document.getElementById("inputLogin").value !== "") && (document.getElementById("inputPassword").value !== "")) {
       key = false;
 
-      for (i = 0; i < retrievedTab.length; i++)
-       {
+      for (i = 0; i < retrievedTab.length; i++) {
 
-        if ((document.getElementById("inputLogin").value == retrievedTab[i].email) && (document.getElementById("inputPassword").value == retrievedTab[i].pwd)) 
-        {
+        if ((document.getElementById("inputLogin").value == retrievedTab[i].email) && (document.getElementById("inputPassword").value == retrievedTab[i].pwd)) {
           resultatAdmin = 1;
-          resultatUser = 0 ;
+          resultatUser = 0;
           key = retrievedTab[i].societe;
-          
+
 
         }
-        
-   
-        if ((document.getElementById("inputLogin").value != retrievedTab[i].email) && (document.getElementById("inputPassword").value !== retrievedTab[i].pwd)) 
-        {
-          
+
+
+        if ((document.getElementById("inputLogin").value != retrievedTab[i].email) && (document.getElementById("inputPassword").value !== retrievedTab[i].pwd)) {
+
           if (retrievedTabUser == null) {
 
           }
-          
 
-          if (retrievedTabUser !== null) 
-          {
+
+          if (retrievedTabUser !== null) {
             for (j = 0; j < retrievedTabUser.length; j++) {
-              
-              if (((document.getElementById("inputLogin").value == retrievedTabUser[j].email) && (document.getElementById("inputPassword").value == retrievedTabUser[j].pwd))) 
-              {
-                resultatAdmin = 0 ;
-                resultatUser = 1 ;
-                key = retrievedTabUser[j].societe;
-                
-               // console.log('resultatUser',resultatUser);
-              }
-              if (((document.getElementById("inputLogin").value !== retrievedTabUser[j].email) && (document.getElementById("inputPassword").value !== retrievedTabUser[j].pwd))) 
-              {
+
+              if (((document.getElementById("inputLogin").value == retrievedTabUser[j].email) && (document.getElementById("inputPassword").value == retrievedTabUser[j].pwd))) {
                 resultatAdmin = 0;
-                resultatUser = 0 ;
+                resultatUser = 1;
+                key = retrievedTabUser[j].societe;
+
+                // console.log('resultatUser',resultatUser);
               }
-             
+              if (((document.getElementById("inputLogin").value !== retrievedTabUser[j].email) && (document.getElementById("inputPassword").value !== retrievedTabUser[j].pwd))) {
+                resultatAdmin = 0;
+                resultatUser = 0;
+              }
+
             }
-            
+
           }
 
         }
       }
-     console.log('resultatAdmin', resultatAdmin);
+      console.log('resultatAdmin', resultatAdmin);
       console.log('resultatUser', resultatUser);
 
     }
   }
-  
+
 
 
 
@@ -259,7 +251,7 @@ var resultatUser ;
   if (resultatUser == 1) {
     location.href = "InterfaceEmploye/g_consulter_profil.html";
     localStorage.setItem("cle", key);
-    
+
   }
   if ((resultatAdmin == 0) && (resultatUser == 0)) {
     // myFunctionSnackbarEchoué()
@@ -269,9 +261,128 @@ var resultatUser ;
 
 
 
+/****user_profil_à_modifier() *****/
 
-/******Afficher Users *******/
-function Afficher(){
-  
+function user_profil_à_modifier() {
+
+
+  var i;
+  var paire_à_modifier = "<tr class=\"first\"><td><b>ID</b></td><td><b>Email</b></td><td><b>Prenom</b></td><td><b>Nom</b></td><td><b>Date De Naissance</b></td><td><b>Mot de passe</b></td><td><b>CIN</b></td><td><b>Adresse</b></td><td><b>Tel</b></td><td><b>Sciete</b></td><td><b>Salaire</b></td><td><b>Congé</b></td><td><b>Action</b></td></tr> \n";
+
+  document.getElementById("paire_à_modifier").innerHTML = paire_à_modifier;
+  /**valeur de recupertion de de l'email de l'utilisateur connecté */
+
+  var retrivedTabmploye = JSON.parse(localStorage.getItem("tabemploye"));
+  var x = localStorage.getItem("cle");
+
+
+  for (i = 0; i < retrivedTabmploye.length; i++) {
+
+    if (x == retrivedTabmploye[i].societe) {
+
+      paire_à_modifier += "<tr><td>" + retrivedTabmploye[i].id + "</td>\n<td>" + retrivedTabmploye[i].lastname + "</td>\n<td>" + retrivedTabmploye[i].firstname + "</td>\n<td>" + retrivedTabmploye[i].datenais + "</td> \n<td>" + retrivedTabmploye[i].pwd + "</td> \n<td>" + retrivedTabmploye[i].tel + "</td> \n<td>" + retrivedTabmploye[i].CIN + "</td> \n<td>" + retrivedTabmploye[i].adresse + "</td> \n<td>" + retrivedTabmploye[i].tel + "</td> \n<td>" + retrivedTabmploye[i].societe + "</td> \n<td>" + retrivedTabmploye[i].salaire + "</td> \n<td>" + retrivedTabmploye[i].congé + "</td>\n<td>" + "<button type='button' onclick='doEdit(this)' id='editingRow'>Modifier </button></td> </tr>\n";
+      document.getElementById("paire_à_modifier").innerHTML = paire_à_modifier;
+    }
+  }
 }
+
+
+
+/****Function EditRow *****/
+
+function doEdit(r) {
+  var i = r.parentNode.parentNode.rowIndex;
+  //  document.getElementById('MyTable').editRow(i);
+  //document.getElementById("editingRow").value = r;
+  console.log(i);
+  // Retrieve the object from storage
+  var retrievedTab = JSON.parse(localStorage.getItem("tabemploye"));
+  var nouveauSalaire = document.getElementById("inputSalaire").value;
+  var pwnouveauCongé = document.getElementById("inputCongé").value;
+
+
+  retrievedTab[i - 1].salaire = nouveauSalaire;
+  retrievedTab[i - 1].congé = pwnouveauCongé;
+
+
+
+  localStorage.setItem("tabemploye", JSON.stringify(retrievedTab));
+
+}
+
+/****Users à supprimer ******/
+function user_profil_à_supprimer() {
+
+  var i;
+  var retrivedTabmploye = JSON.parse(localStorage.getItem("tabemploye"));
+  var x = localStorage.getItem("cle");
+  var render = "<table id='MyTableSupp' >";
+  render += "<tr class=\"first\"><td><b>ID</b></td><td><b>Email</b></td><td><b>Prenom</b></td><td><b>Nom</b></td><td><b>Date De Naissance</b></td><td><b>Mot de passe</b></td><td><b>CIN</b></td><td><b>Adresse</b></td><td><b>Tel</b></td><td><b>Sciete</b></td><td><b>Salaire</b></td><td><b>Congé</b></td><td><b>Action</b></td></tr> \n";
+
+  // document.getElementById("paire_à_supprimer").innerHTML = paire_à_supprimer;
+  /**valeur de recupertion de de l'email de l'utilisateur connecté */
+
+
+  var T = [];
+  j = 0;
+  for (i = 0; i < retrivedTabmploye.length; i++) {
+
+    if (x == retrivedTabmploye[i].societe) {
+      T[j] = retrivedTabmploye[i];
+      j = j + 1;
+      console.log('T ', T);
+      render += "<tr><td>" + retrivedTabmploye[i].id + "</td>\n<td>" + retrivedTabmploye[i].lastname + "</td>\n<td>" + retrivedTabmploye[i].firstname + "</td>\n<td>" + retrivedTabmploye[i].datenais + "</td> \n<td>" + retrivedTabmploye[i].pwd + "</td> \n<td>" + retrivedTabmploye[i].tel + "</td> \n<td>" + retrivedTabmploye[i].CIN + "</td> \n<td>" + retrivedTabmploye[i].adresse + "</td> \n<td>" + retrivedTabmploye[i].tel + "</td> \n<td>" + retrivedTabmploye[i].societe + "</td> \n<td>" + retrivedTabmploye[i].salaire + "</td> \n<td>" + retrivedTabmploye[i].congé + "</td>\n<td>" + "<button type='button' onclick='doDelete(this)' >Supprimer </button></td> </tr>\n";
+      // document.getElementById("paire_à_supprimer").innerHTML = paire_à_supprimer;
+      localStorage.setItem("T", JSON.stringify(T));
+    }
+
+
+  }
+  render += "</table>";
+  paire_à_supprimer.innerHTML = render;
+
+
+
+
+}
+
+
+
+/****Fuction DeleteRow *****/
+function doDelete(r) {
+  var V = [];
+  var retrievedT = JSON.parse(localStorage.getItem("T"));
+  var retrivedTabmploye = JSON.parse(localStorage.getItem('tabemploye'));
+  
+  var x = r.parentNode.parentNode.rowIndex ;
+ console.log('x ',x);
+ if(x==1){
+  retrievedT.shift();
+  
+  localStorage.setItem("tabemploye", JSON.stringify(retrievedT));
+  paire_à_supprimer.deleteRow(x);
+ }
+ if(x!=1){
+  V[0] = retrievedT[x];
+  retrievedT[x]=retrievedT[0];
+  retrievedT[0] = V[0];
+   
+  
+  retrievedT.shift();
+  retrievedT.shift();
+  
+  localStorage.setItem("tabemploye", JSON.stringify(retrievedT));
+    //localStorage.setItem("tabemploye", JSON.stringify(retrievedT));
+  
+  
+    console.log('retrievdT ', retrievedT);
+   
+  
+   
+   paire_à_supprimer.deleteRow(x);
+ }
+
+
+}
+
 
