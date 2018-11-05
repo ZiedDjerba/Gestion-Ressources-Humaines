@@ -156,7 +156,12 @@ input{
 }
 /***style pour le profil**/
 #profil { 
-    background:aquamarine; 
-    margin-left:15%; 
+   
+    margin-left:28%; 
     margin-top: 2%;
     border-collapse:collapse;}   
+    tr,table{
+        border: 2;
+    padding: 5%;
+    margin: 5%;
+    }

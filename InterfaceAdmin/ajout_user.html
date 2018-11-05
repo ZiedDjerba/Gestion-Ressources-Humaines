@@ -4,80 +4,101 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ajouter un utilisateur</title>
+    <title>Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="styleAdmin.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="ajout_user.css" />
+   
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-        crossorigin="anonymous">
-
-
+    crossorigin="anonymous">
+    
 </head>
 
-<body>
-    <div>
-        <h2>Ajouter un utilisateur</h2>
-        <h4>Creer un utilisateur et l'ajouter à ce site</h4>
+<body >
+    <!--Container-->
+    <div class="Container">
+        <!--ColumnLeft-->
+        <div class="ColumnLeft">
+            <!--Row1CL-->
+            <div>
+                <img src="images/John.PNG" alt="">
+            </div>
+            <!--Row2CL-->
+            <div class="Row2CL">
+                <ul>
+                        <li class="Li1Row2CL" ><a href="Admin.html" class="TxtLi1Row2CL"> <i class="fas fa-users"></i> Afficher Users</a> </li> &nbsp
+                        <li class="Li1Row2CL" ><a href="ajout_user.html" class="TxtLi1Row2CL"> <i class="fas fa-user-plus"></i>Ajouter User</a> </li> &nbsp
+                    <li class="Li1Row2CL"><a href="modifier.html" class="TxtLi1Row2CL"> <i class="fas fa-user-edit"></i>> Modifier User</a> </li> &nbsp
+                    <li class="Li2Row2CL"> <a href="supprimer.html" class="TxtLi2Row2CL"> <i class="fas fa-user-slash"></i>  Supprimer User</li></a> &nbsp
+                    <li class="Li2Row2CL"> <a href="ajoutmission.html" class="TxtLi2Row2CL"> <i class="fas fa-trash-alt"></i>  Ajouter Mission</li></a> &nbsp
+                </ul>
+            </div>
 
-    </div>
-    <div>
-
-        <form id="user_form">
-            <div class="row">
-                <label class="required" for="name">Matricule:</label>
-                <input id="inputid" class="input" name="name" type="text" value="" size="30" /><br />
-                <div class="row">
-                    <label class="required" for="name">Nom:</label>
-                    <input id="inputnom_user" class="input" name="name" type="text" value="" size="30" /><br />
-                    <div class="row">
-                        <label class="required" for="name">Prenom:</label>
-                        <input id="inputprenom_user" class="input" name="name" type="text" value="" size="30" /><br />
-                        <div class="row">
-                            <label class="required" for="name">Date De Naissance:</label>
-                            <input id="inputdatenais" class="input" name="name" type="date" name="date" size="30" /><br />
-                            <div class="row">
-                                <label class="required" for="name">CIN:</label>
-                                <input id="inputCin_user" class="input" name="name" type="text" value="" size="30" /><br />
-                                <div class="row">
-                                    <label class="required" for="name">Email:</label>
-                                    <input id="inputEmail_user" class="input" name="name" type="text" value="" size="30" /><br />
-                                    <div class="row">
-                                        <label class="required" for="name">Mot de passe:</label>
-                                        <input id="inputpwd_user" class="input" name="name" type="text" value="" size="30" /><br />
-                                        <div class="row">
-                                            <label class="required" for="name">Tel:</label>
-                                            <input id="inputtel_user" class="input" name="name" type="text" value=""
-                                                size="30" /><br />
-
-                                            <div class="row">
-                                                <label class="required" for="name">Adresse:</label>
-                                                <input id="inputadresse_user" class="input" name="name" type="text"
-                                                    value="" size="30" /><br />
-                                              
-                                                    <div class="row">
-                                                        <label class="required" for="name">Salaire:</label>
-                                                        <input id="inpusalaire" class="input" name="name" type="text"
-                                                            value="" size="30" /><br />
-                                                        <div class="row">
-                                                            <label class="required" for="name">Congé:</label>
-                                                            <input id="inputconge" class="input" name="name" type="text"
-                                                                value="" size="30" /><br />
-
-                                                            <div>
-                                                                <br><br>
-                                                                <label class="required" for="name">Image:</label>
-                                                                <input type="file" id="img" name="avatar" accept="image/png, image/jpeg">
-                                                            </div>
-
-                                                            <p id="pobl">(*) Champ obligatoire</p>
+        </div>
 
 
-        </form>
-        <a onclick="add_user()"> <input id="submit_button" type="submit" value="Ajouter" />
-            <script type="text/javascript" src="../javascript.js"></script>
-            <script type="text/javascript" src="../js.js"></script>
+        <!--ColumnRight-->
+        <div class="ColumnRight">
+            <!--Row1CR-->
+            <div class="Row1CR">
+                <!--Column1R1CR-->
+                <div class="Column1R1CR">
+                    <h2>Adminstrateur</h2>
+                </div>
+                <!--Column2R1CR-->
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">   <i class="fas fa-bars" ></i></button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="#home"> <i class="far fa-user"></i>  Mon Profil</a>
+                        <a onclick="deconnecter()"> <i class="fas fa-power-off"></i>  Déconnexion</a>
+                      
+                    </div>
+
+                </div>
+            </div>
+            <!--Row2CR-->
+          
+        <div class="wrap">
             
+    <form>
+            <h2>Veuillez Saisir Un Nouveaux Utilisateur</h2>
+            
+                   
+          
+            <form id="user_form">
+                
+                   
+                    <input id="inputid" type="text" name="Matricule" placeholder="Matricule">
+                   
+                   
+                        <input id="inputnom_user" type="text" name="Nom" placeholder="Nom">
+                        <input id="inputprenom_user" type="text" name="Prenom" placeholder="Prenom">
+                        <input id="inputEmail_user" type="text" name="Email" placeholder="Email">
+                        <input id="inputdatenais" type="date" name="Date De naissance" placeholder="Date De naissance">
+                        <input id="inputCin_user" type="text" name="CIN" placeholder="CIN">
+                        <input id="inputpwd_user" type="text" name="Mot De Passe" placeholder="Mot De Passe">
+                        <input id="inputtel_user" type="text" name="Tel" placeholder="Tel">
+                        <input id="inputadresse_user" type="text" name="Adresse" placeholder="Adresse">
+                        <input id="inpusalaire" type="text" name="Salaire" placeholder="Salaire">
+                        <input id="inputconge" type="text" name="Congé" placeholder="Congé">
+                                                                  
+    
+    
+            </form>
+            <a onclick="add_user()"> <input id="submit_button" type="submit" value="Ajouter" />
+            </form>   </div>
+          
+            
+                   
+
+<!--Snackbar-->
+<div id="snackbar"> Création réussite </div>
+<div id="snackbarFailed"> Création échouée </div>
+
+<div id="snackbar"></div>
+    <script src="../javascript.js"></script>
+    <script src="../js.js"></script>
 
 </body>
-
 
 </html>

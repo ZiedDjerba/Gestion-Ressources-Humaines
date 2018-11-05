@@ -4,32 +4,80 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Profil</title>
+    <title>Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="styleAdmin.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../InterfaceAdmin/ajout_user.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-        crossorigin="anonymous">
-
-
+    crossorigin="anonymous">
+    
 </head>
 
-<body onload="user_profil()">
-    <div>
-        <h2>Votre profil</h2></div>
-        <table id="paire" border="1">
+<body onload="affiche_profil()">
+    <!--Container-->
+    <div class="Container">
+        <!--ColumnLeft-->
+        <div class="ColumnLeft">
+            <!--Row1CL-->
+            <div>
+                <img src="images/John.PNG" alt="">
+            </div>
+            <!--Row2CL-->
+            <div class="Row2CL">
+                <ul>
+                    <li class="Li1Row2CL"><a href="#" class="TxtLi1Row2CL"> <i class="fas fa-pen-alt"></i> Consulter Profil</a> </li>
+                    <li class="Li2Row2CL"> <a href="#" class="TxtLi2Row2CL"> <i class="fas fa-trash-alt"></i>Consulter Mission</li></a> 
+                </ul>
+            </div>
+
+        </div>
 
 
-        </table>
+        <!--ColumnRight-->
+        <div class="ColumnRight">
+            <!--Row1CR-->
+            <div class="Row1CR">
+                <!--Column1R1CR-->
+                <div class="Column1R1CR">
+                    <h2>Adminstrateur</h2>
+                </div>
+                <!--Column2R1CR-->
+                <div class="dropdown">
+                    <button onclick="myFunction()" class="dropbtn">   <i class="fas fa-bars" ></i></button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="#home"> <i class="far fa-user"></i>  Mon Profil</a>
+                        <a onclick="deconnecter()"> <i class="fas fa-power-off"></i>  Déconnexion</a>
+                      
+                    </div>
 
-       
-        <script type="text/javascript" src="../javascript.js"></script>
-        <script type="text/javascript" src="../js.js"></script>
-        <script src="../js.js"></script>
-    
-     
+                </div>
+            </div>
+
+            <!--Row2CR-->
+            <div>
+                <h1>Table d'informations</h1>
+            </div>
+           
+                    <div>
+                            <div class="wrap">
+                        <h2>Votre profil</h2>
+                       
+                       
+                <table id="profil" border="0">
+                
+                
+                </table>
+                </div>
+            </div>
+    </div>
    
 
-</body>
 
+    <script type="text/javascript" src="../javascript.js"></script>
+    <script type="text/javascript" src="../js.js"></script>
+    <script src="../js.js"></script>
+    
+
+</body>
 
 </html>

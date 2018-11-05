@@ -201,12 +201,13 @@ function Login() {
           resultatAdmin = 1;
           resultatUser = 0;
           key = retrievedTab[i].societe;
+          i= retrievedTab.lengt;
 
 
         }
 
 
-        if ((document.getElementById("inputLogin").value != retrievedTab[i].email) && (document.getElementById("inputPassword").value !== retrievedTab[i].pwd)) {
+     else  if ((document.getElementById("inputLogin").value != retrievedTab[i].email) && (document.getElementById("inputPassword").value !== retrievedTab[i].pwd)) {
 
           if (retrievedTabUser == null) {
 
@@ -220,10 +221,12 @@ function Login() {
                 resultatAdmin = 0;
                 resultatUser = 1;
                 key = retrievedTabUser[j].societe;
+                j = retrievedTabUser.length;
+                
 
                 // console.log('resultatUser',resultatUser);
               }
-              if (((document.getElementById("inputLogin").value !== retrievedTabUser[j].email) && (document.getElementById("inputPassword").value !== retrievedTabUser[j].pwd))) {
+          else  if (((document.getElementById("inputLogin").value !== retrievedTabUser[j].email) && (document.getElementById("inputPassword").value !== retrievedTabUser[j].pwd))) {
                 resultatAdmin = 0;
                 resultatUser = 0;
               }
@@ -234,8 +237,11 @@ function Login() {
 
         }
       }
+
       console.log('resultatAdmin', resultatAdmin);
       console.log('resultatUser', resultatUser);
+
+
 
     }
   }
@@ -246,12 +252,15 @@ function Login() {
   if (resultatAdmin == 1) {
     location.href = "InterfaceAdmin/Admin.html";
     //Store
+
     localStorage.setItem("cle", key);
+    localStorage.setItem("objlogin", document.getElementById("inputLogin").value);
   }
   if (resultatUser == 1) {
     location.href = "InterfaceEmploye/g_consulter_profil.html";
     localStorage.setItem("cle", key);
 
+    localStorage.setItem("objlogin", document.getElementById("inputLogin").value);
   }
   if ((resultatAdmin == 0) && (resultatUser == 0)) {
     // myFunctionSnackbarEchoué()
@@ -275,13 +284,19 @@ function user_profil_à_modifier() {
   var retrivedTabmploye = JSON.parse(localStorage.getItem("tabemploye"));
   var x = localStorage.getItem("cle");
 
-
+  var M = [];
+  j = 0;
   for (i = 0; i < retrivedTabmploye.length; i++) {
 
     if (x == retrivedTabmploye[i].societe) {
+      M[j] = retrivedTabmploye[i];
+      j = j + 1;
 
       paire_à_modifier += "<tr><td>" + retrivedTabmploye[i].id + "</td>\n<td>" + retrivedTabmploye[i].lastname + "</td>\n<td>" + retrivedTabmploye[i].firstname + "</td>\n<td>" + retrivedTabmploye[i].datenais + "</td> \n<td>" + retrivedTabmploye[i].pwd + "</td> \n<td>" + retrivedTabmploye[i].tel + "</td> \n<td>" + retrivedTabmploye[i].CIN + "</td> \n<td>" + retrivedTabmploye[i].adresse + "</td> \n<td>" + retrivedTabmploye[i].tel + "</td> \n<td>" + retrivedTabmploye[i].societe + "</td> \n<td>" + retrivedTabmploye[i].salaire + "</td> \n<td>" + retrivedTabmploye[i].congé + "</td>\n<td>" + "<button type='button' onclick='doEdit(this)' id='editingRow'>Modifier </button></td> </tr>\n";
       document.getElementById("paire_à_modifier").innerHTML = paire_à_modifier;
+      localStorage.setItem("M", JSON.stringify(M));
+      
+
     }
   }
 }
@@ -291,24 +306,40 @@ function user_profil_à_modifier() {
 /****Function EditRow *****/
 
 function doEdit(r) {
-  var i = r.parentNode.parentNode.rowIndex;
+  var x = r.parentNode.parentNode.rowIndex;
   //  document.getElementById('MyTable').editRow(i);
   //document.getElementById("editingRow").value = r;
-  console.log(i);
+  console.log(x);
   // Retrieve the object from storage
-  var retrievedTab = JSON.parse(localStorage.getItem("tabemploye"));
+  var retrievedM = JSON.parse(localStorage.getItem("M"));
+  var retrievedTabEmpl = JSON.parse(localStorage.getItem("tabemploye"));
   var nouveauSalaire = document.getElementById("inputSalaire").value;
   var pwnouveauCongé = document.getElementById("inputCongé").value;
 
+  retrievedM[x-1].salaire = nouveauSalaire;
+  retrievedM[x-1].congé = pwnouveauCongé;
+  localStorage.setItem("M", JSON.stringify(retrievedM));
 
-  retrievedTab[i - 1].salaire = nouveauSalaire;
-  retrievedTab[i - 1].congé = pwnouveauCongé;
 
+  for(i=0; i<retrievedTabEmpl.length;i++){
+if(retrievedM[x-1].email === retrievedTabEmpl[i].email){
+  
+  y=i;
 
-
-  localStorage.setItem("tabemploye", JSON.stringify(retrievedTab));
 
 }
+  }
+console.log ('y', y);
+  retrievedTabEmpl[y].salaire = nouveauSalaire;
+retrievedTabEmpl[y].congé = pwnouveauCongé;
+
+  retrievedM[x-1].salaire = nouveauSalaire;
+  retrievedM[x-1].congé = pwnouveauCongé;
+  localStorage.setItem("M", JSON.stringify(retrievedM));
+
+  localStorage.setItem("tabemploye", JSON.stringify(retrievedTabEmpl));
+
+}  
 
 /****Users à supprimer ******/
 function user_profil_à_supprimer() {
@@ -330,7 +361,7 @@ function user_profil_à_supprimer() {
     if (x == retrivedTabmploye[i].societe) {
       T[j] = retrivedTabmploye[i];
       j = j + 1;
-      console.log('T ', T);
+      
       render += "<tr><td>" + retrivedTabmploye[i].id + "</td>\n<td>" + retrivedTabmploye[i].lastname + "</td>\n<td>" + retrivedTabmploye[i].firstname + "</td>\n<td>" + retrivedTabmploye[i].datenais + "</td> \n<td>" + retrivedTabmploye[i].pwd + "</td> \n<td>" + retrivedTabmploye[i].tel + "</td> \n<td>" + retrivedTabmploye[i].CIN + "</td> \n<td>" + retrivedTabmploye[i].adresse + "</td> \n<td>" + retrivedTabmploye[i].tel + "</td> \n<td>" + retrivedTabmploye[i].societe + "</td> \n<td>" + retrivedTabmploye[i].salaire + "</td> \n<td>" + retrivedTabmploye[i].congé + "</td>\n<td>" + "<button type='button' onclick='doDelete(this)' >Supprimer </button></td> </tr>\n";
       // document.getElementById("paire_à_supprimer").innerHTML = paire_à_supprimer;
       localStorage.setItem("T", JSON.stringify(T));
@@ -351,36 +382,122 @@ function user_profil_à_supprimer() {
 /****Fuction DeleteRow *****/
 function doDelete(r) {
   var V = [];
-  var retrievedT = JSON.parse(localStorage.getItem("T"));
-  var retrivedTabmploye = JSON.parse(localStorage.getItem('tabemploye'));
+  var W = [];
+
+
+
+  var x = r.parentNode.parentNode.rowIndex;
+  console.log('x ', x);
+
+  //Etat x , x==T[0]
+  if (x == 1) {
+    var retrievedT = JSON.parse(localStorage.getItem("T"));
+    var retrivedTabmploye = JSON.parse(localStorage.getItem('tabemploye'));
+
+
+
+    var W = [];
+    
+    //Determiner l'indice du tableau de tabemploye à supprimer
+    for (i = 0; i < retrivedTabmploye.length; i++) {
+      if (retrievedT[0].email == retrivedTabmploye[i].email) {
+       console.log('i ', i);
+         y = i;
+        
+      }
+      console.log('y ', y);
+    }
+    if (y == 0) {
+      
+      paire_à_supprimer.deleteRow(x);
+
+      //Suppression premier ligne de tableau tabemploye
+      retrivedTabmploye.shift();
+      
+      localStorage.setItem("tabemploye", JSON.stringify(retrivedTabmploye));
+      var retrivedTabmploye = JSON.parse(localStorage.getItem("tabemploye"));
+
+    }
+
+    if (y != 0) {
+
+    }
+    //Suppression premier ligne de Tableau T
+    
+    paire_à_supprimer.deleteRow(x);
+
+    //Suppression premier ligne de tableau tembemploye
+
+    //permutation  d'objet d'indice 0 par indice à supprimer
+    W[0] = retrivedTabmploye[y];
+    retrivedTabmploye[y] = retrivedTabmploye[0];
+    retrivedTabmploye[0] = W[0];
+
+    //suppression
+    retrivedTabmploye.shift();
+    
+    localStorage.setItem("tabemploye", JSON.stringify(retrivedTabmploye));
+    var retrivedTabmploye = JSON.parse(localStorage.getItem("tabemploye"));
+  }
+
+  // Etat x en T , x!=T[0]
   
-  var x = r.parentNode.parentNode.rowIndex ;
- console.log('x ',x);
- if(x==1){
-  retrievedT.shift();
-  
-  localStorage.setItem("tabemploye", JSON.stringify(retrievedT));
-  paire_à_supprimer.deleteRow(x);
- }
- if(x!=1){
-  V[0] = retrievedT[x];
-  retrievedT[x]=retrievedT[0];
-  retrievedT[0] = V[0];
-   
-  
-  retrievedT.shift();
-  retrievedT.shift();
-  
-  localStorage.setItem("tabemploye", JSON.stringify(retrievedT));
-    //localStorage.setItem("tabemploye", JSON.stringify(retrievedT));
-  
-  
-    console.log('retrievdT ', retrievedT);
-   
-  
-   
-   paire_à_supprimer.deleteRow(x);
- }
+  if (x != 1) {
+    var retrievedT = JSON.parse(localStorage.getItem("T"));
+    var retrivedTabmploye = JSON.parse(localStorage.getItem("tabemploye"));
+    V[0] = retrievedT[x-1];
+    retrievedT[x-1] = retrievedT[0];
+    retrievedT[0] = V[0];
+    
+
+    var W = [];
+    var y;
+    //Determiner l'indice du tableau de tabemploye à supprimer
+    for (i = 0; i<retrivedTabmploye.length; i++) {
+      if (retrievedT[0].email == retrivedTabmploye[i].email) {
+        y = i;
+        
+      }
+    }
+console.log('y ', y);
+    if (y == 0) {
+
+      
+
+     
+    
+
+      //Suppression premier ligne de tableau tabemploye
+      retrivedTabmploye.shift();
+      
+      localStorage.setItem("tabemploye", JSON.stringify(retrivedTabmploye));
+     
+
+      paire_à_supprimer.deleteRow(x);
+
+    }
+    if (y != 0) {
+      
+     // var retrievedT = JSON.parse(localStorage.getItem("T"));
+
+      //Suppression premier ligne de tableau tembemploye
+
+      //permutation  d'objet d'indice 0 par indice à supprimer
+      W[0] = retrivedTabmploye[y];
+      retrivedTabmploye[y] = retrivedTabmploye[0];
+      retrivedTabmploye[0] = W[0];
+
+      //suppression
+      retrivedTabmploye.shift();
+      
+      localStorage.setItem("tabemploye", JSON.stringify(retrivedTabmploye));
+    //  var retrivedTabmploye = JSON.parse(localStorage.getItem("tabemploye"));
+
+    }
+
+
+
+  }
 
 
 }
