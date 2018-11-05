@@ -201,6 +201,7 @@ function Login() {
           resultatAdmin = 1;
           resultatUser = 0;
           key = retrievedTab[i].societe;
+          retrievdEmail = retrievedTab[i].email;
           i= retrievedTab.lengt;
 
 
@@ -254,6 +255,7 @@ function Login() {
     //Store
 
     localStorage.setItem("cle", key);
+    localStorage.setItem('retrievdEmail ', retrievdEmail);
     localStorage.setItem("objlogin", document.getElementById("inputLogin").value);
   }
   if (resultatUser == 1) {
@@ -501,5 +503,8 @@ console.log('y ', y);
 
 
 }
+
+
+
 
 

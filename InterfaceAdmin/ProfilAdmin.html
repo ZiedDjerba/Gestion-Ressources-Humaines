@@ -12,7 +12,7 @@
 
 </head>
 
-<body onload="user_profil_à_modifier()">
+<body>
     <!--Container-->
     <div class="Container">
         <!--ColumnLeft-->
@@ -24,16 +24,19 @@
             <!--Row2CL-->
             <div class="Row2CL">
                 <ul>
-                    <li class="Li1Row2CL" ><a href="Admin.html" class="TxtLi1Row2CL"><i class="fas fa-users"></i>
+                    <li class="Li1Row2CL"><a href="Admin.html" class="TxtLi1Row2CL"><i class="fas fa-users"></i>
                             Afficher Users</a> </li> &nbsp
-                    <li class="Li1Row2CL"><a href="ajout_user.html" class="TxtLi1Row2CL"> <i class="fas fa-user-plus"></i>
-                            Ajouter User</a> </li> &nbsp
-                    <li class="Li1Row2CL"><a href="#" class="TxtLi1Row2CL"> <i class="fas fa-user-edit"></i> Modifier
+                    <li class="Li1Row2CL"><a href="ajout_user.html" class="TxtLi1Row2CL"> <i class="fas fa-user-plus"></i>Ajouter
                             User</a> </li> &nbsp
-                    <li class="Li2Row2CL"> <a href="supprimer.html" class="TxtLi2Row2CL"> <i class="fas fa-user-slash"></i> Supprimer
-                            User</li></a> &nbsp
 
-                            <li class="Li1Row2CL" ><a href="ajoutmission.html" class="TxtLi1Row2CL"> <i class="fas fa-pen-alt"></i> Ajouter Mission</a> </li> &nbsp
+                    <li class="Li1Row2CL"><a href="modifier.html" class="TxtLi1Row2CL"> <i class="fas fa-user-edit"></i>
+                            Modifier User</a> </li> &nbsp
+                    <li class="Li2Row2CL"> <a href="supprimer.html" class="TxtLi2Row2CL"> <i class="fas fa-user-slash"></i>
+                            Supprimer User</li></a> &nbsp
+
+                    <li class="Li2Row2CL"> <a href="ajoutmission.html" class="TxtLi2Row2CL"> <i class="fas fa-trash-alt"></i>
+                            Ajouter Mission</li></a> &nbsp
+
 
                 </ul>
             </div>
@@ -53,7 +56,7 @@
                 <div class="dropdown">
                     <button onclick="myFunction()" class="dropbtn"> <i class="fas fa-bars"></i></button>
                     <div id="myDropdown" class="dropdown-content">
-                        <a href="#home"> <i class="far fa-user"></i> Mon Profil</a>
+                        <a href="#." onclick="AfficherAdminProfil()"> <i class="far fa-user"></i> Mon Profil</a>
                         <a href="#login.html" onclick="deconnecter()"> <i class="fas fa-power-off"></i> Déconnexion</a>
 
                     </div>
@@ -61,27 +64,8 @@
                 </div>
             </div>
             <!--Row2CR-->
-            <div class="wrap">
-
-
-                <form>
-                    <h2>veuiller saisir les nouvaux cordonnées de l'utilisateur à modifier</h2>
-                    <input id="inputSalaire" type="text" name="Nouveau salaire" placeholder="Nouveau salaire">
-                    <p></p>
-                    <input id="inputCongé" type="text" name="Congé" placeholder="Congé">
-                    <p></p>
-                    <input id="inputMission" type="text" name="Mission" placeholder="Mission">
-                    <p></p>
-
-                </form>
-
-            </div>
-            <!--Row3CR-->
-            <div >
-
-
-
-
+            <div>
+                <h1>Table d'informations</h1>
 
                 <div>
                     <h2>Votre profil</h2>
@@ -89,20 +73,17 @@
 
 
             </div>
-            <!--Row4CR-->
-            <div >
-                <table id="paire_à_modifier" border="1">
-
-
+            <div>
+                <table id="profil_admin" border="1">
+            
+            
                 </table>
+
             </div>
 
         </div>
 
     </div>
-
-
-
 
 
 
